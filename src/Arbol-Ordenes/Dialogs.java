@@ -86,7 +86,7 @@ public class Dialogs {
      * 
      * @param message Mensaje de error
      */
-    private static void showError(String message) {
+    public static void showError(String message) {
         JOptionPane.showMessageDialog(null, message, "Error", JOptionPane.ERROR_MESSAGE);
     }
 
@@ -100,24 +100,26 @@ public class Dialogs {
         JOptionPane.showMessageDialog(null, message, title, JOptionPane.INFORMATION_MESSAGE);
     }
 
-    public static String[] getExpression(String title, String message) {
-        String text = getString(title, message);
+    /**
+     * 
+     * @param title   Titulo de la ventana
+     * @param message Mensaje a mostrar
+     * @return La expresión ingresada por el usuario
+     */
+    public static String getExpression(String title, String message) {
+        String expression = getString(title, message);
 
-        String[] expression = Tokenizer.divideExpression(text);
+        expression = expression.toLowerCase();
         return expression;
 
     }
 
     public static void main(String[] args) {
 
-        String[] expression;
+        String expression;
 
         expression = getExpression("Ventana de prueba", "Ingresa la expresión");
 
-        for (String value : expression) {
-
-            System.out.println(value);
-
-        }
+        System.out.println(expression);
     }
 }

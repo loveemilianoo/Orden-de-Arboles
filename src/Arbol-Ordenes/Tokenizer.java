@@ -3,70 +3,36 @@ import java.util.List;
 
 public class Tokenizer {
 
-    public static String[] divideExpression(String expression) {
+    public static String[] tokenize(String expresion) {
         List<String> tokens = new ArrayList<>();
-        StringBuilder current = new StringBuilder();
 
-        for (int i = 0; i < expression.length(); i++) {
-            char c = expression.charAt(i);
+        StringBuilder tokenActual = new StringBuilder();
 
-            if (Character.isWhitespace(c))
-                continue;
+        for (int i = 0; i < expresion.length(); i++) {
+            char a = expresion.charAt(i);
 
-            if (i + 2 < expression.length() && expression.substring(i, i + 3).equalsIgnoreCase("div")) {
-                if (current.length() > 0) {
-                    tokens.add(current.toString());
-                    current.setLength(0);
+            if (Character.isWhitespace(a)) {
+                if (tokenActual.length() > 0) {
+                    tokens.add(tokenActual.toString());
+                    tokenActual.setLength(0);
                 }
-                tokens.add("div");
-                i += 2;
                 continue;
             }
-
-            if (i + 2 < expression.length() && expression.substring(i, i + 3).equalsIgnoreCase("mod")) {
-                if (current.length() > 0) {
-                    tokens.add(current.toString());
-                    current.setLength(0);
+            if (a == '(' || a == ')' || a == '+' || a == '-' || a == '*' || a == '/') {
+                if (tokenActual.length() > 0) {
+                    tokens.add(tokenActual.toString());
+                    tokenActual.setLength(0);
                 }
-                tokens.add("mod");
-                i += 2;
-                continue;
-            }
-
-            if ("+-*/".indexOf(c) >= 0) {
-                if (current.length() > 0) {
-                    tokens.add(current.toString());
-                    current.setLength(0);
-                }
-                tokens.add(Character.toString(c));
-                continue;
-            }
-
-            if (Character.isLetter(c)) {
-                if (current.length() > 0) {
-                    tokens.add(current.toString());
-                    current.setLength(0);
-                }
-                tokens.add(Character.toString(c));
+                tokens.add(String.valueOf(a));
+            } else if (Character.isLetterOrDigit(a)) {
+                tokenActual.append(a);
             } else {
-
-                current.append(c);
+                tokenActual.append(a);
             }
         }
-
-        if (current.length() > 0) {
-            tokens.add(current.toString());
+        if (tokenActual.length() > 0) {
+            tokens.add(tokenActual.toString());
         }
-
         return tokens.toArray(new String[0]);
-    }
-
-    public static void main(String[] args) {
-        String expression = "AB+55MOD2CD*--";
-        String[] result = divideExpression(expression);
-
-        for (String token : result) {
-            System.out.println(token);
-        }
     }
 }
