@@ -32,7 +32,7 @@ public class TreePanel extends JPanel {
 
     private Color getNodeColor(NodoExpresion node) {
 
-        if ("+-*/".indexOf(node.valor) >= 0 ||
+        if ("+-*/^".indexOf(node.valor) >= 0 ||
                 "div".equalsIgnoreCase(node.valor) ||
                 "mod".equalsIgnoreCase(node.valor)) {
             return Color.decode("#6040b0");
