@@ -1,3 +1,11 @@
+/*Programa realizado por el Equipo 4 de la materia de Matemáticas Discretas
+ * con la profesora Lilian Karina Espinosa de los Monteros Heredia
+ * Integrantes:
+ * Héctor Jesús García Monroy
+ * Gael Gonzáles Méndez
+ * Emiliano Hidalgo Gasca
+ */
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -15,7 +23,8 @@ public class Main {
         try {
 
             // ? Se inicia la ventana con un border layout
-            screen = new Screen("Árbol binario", 800, 500);
+            // Nota: se usa "Arbol binario" sin acento para evitar problemas de codificación
+            screen = new Screen("Arbol binario", 800, 500);
             screen.setLayout(new BorderLayout());
 
             // ? Se ingresa la expresión

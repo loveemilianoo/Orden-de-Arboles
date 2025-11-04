@@ -71,11 +71,16 @@ public class Dialogs {
     public static Integer getIntegerInRange(String title, String message, int min, int max, boolean askAgain) {
         Integer number = getInteger(title, message, askAgain);
 
+        if (number == null) {
+            return null;
+        }
+
         if (number < min || number > max) {
             showError(String.format("El valor no está en el rango [%s, %s]", min, max));
             if (askAgain) {
                 return getIntegerInRange(title, message, min, max, askAgain);
             }
+            return null;
         }
 
         return number;
@@ -108,9 +113,11 @@ public class Dialogs {
      */
     public static String getExpression(String title, String message) {
         String expression = getString(title, message);
+        if (expression == null) {
+            return null;
+        }
 
-        expression = expression.toLowerCase();
-        return expression;
+        return expression.toLowerCase();
 
     }
 

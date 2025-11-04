@@ -18,7 +18,7 @@ public class Tokenizer {
                 }
                 continue;
             }
-            if (a == '(' || a == ')' || a == '+' || a == '-' || a == '*' || a == '/') {
+            if (a == '(' || a == ')' || a == '+' || a == '-' || a == '*' || a == '/' || a == '^') {
                 if (tokenActual.length() > 0) {
                     tokens.add(tokenActual.toString());
                     tokenActual.setLength(0);
